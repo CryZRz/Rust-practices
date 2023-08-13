@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mi web app con assembly</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="coin">
+        <button id="price_button">Vamos!</button>
+        <h2 id="price_label"></h2>
+    </div>
+    <script type="module">
+        import __wbg_init, {get_coin_price} from "../pkg/web_assembly.js"
+        __wbg_init().then(() => {
+            console.log("init")
+            button.addEventListener("click", e => {
+                get_coin_price(input.value).then((price) => {
+                    console.log(price)
+                    label.textContent = `USD$${price}`
+                }).catch((errFetch) => {
+                    console.log(errFetch)
+                })
+            })
+        }).catch(e => {
+            console.log("error al cargar el assembly", e)
+        })
+
+        const button = document.getElementById("price_button");
+        const input = document.getElementById("coin");
+        const label = document.getElementById("price_label");
+    </script>
+</body>
+</html>

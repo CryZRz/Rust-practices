@@ -1,0 +1,1 @@
+pub static YOUTUBE_KEY: &str = "AIzaSyDvRTE32OSr1qrbEVpLVNJ8lJVMNu4S5No";
